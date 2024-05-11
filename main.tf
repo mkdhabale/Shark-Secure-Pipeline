@@ -1,6 +1,15 @@
+
+
+data "aws_secretsmanager_secret" "aws-keys" {
+ name = "aws-keys"
+}
+
+data "aws_secretsmanager_secret_version" "secret_credentials" {
+ secret_id = data.aws_secretsmanager_secret.aws-keys.id
+}
 provider "aws" { 
-  access_key = var.access_key
-  secret_key = var.secret_key
+  access_key = jsondecode(data.aws_secretsmanager_secret_version.secret_credentials.secret_string)["access_key"]
+  secret_key = jsondecode(data.aws_secretsmanager_secret_version.secret_credentials.secret_string)["secret_key"]
   region     = "us-east-1"
 }
 
