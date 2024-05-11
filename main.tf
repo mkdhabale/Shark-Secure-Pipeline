@@ -1,6 +1,6 @@
 provider "aws" { 
-  access_key = "AKIAV6VEJQ2HIR37RXGI"
-  secret_key = "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"
+  access_key = ${{ secrets.AWS_USR_ACCESS_KEY }}
+  secret_key = ${{ secrets.AWS_USR_SECRET_KEY }}
   region     = "us-east-1"
 }
 
