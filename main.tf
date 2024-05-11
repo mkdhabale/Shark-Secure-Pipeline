@@ -1,6 +1,6 @@
 provider "aws" { 
-  TF_VAR_access_key = ${{ secrets.AWS_USR_ACCESS_KEY }}
-  TF_VAR_secret_key = ${{ secrets.AWS_USR_SECRET_KEY }}
+  TF_VAR_access_key = var.AWS_USR_ACCESS_KEY
+  TF_VAR_secret_key = var.AWS_USR_SECRET_KEY
   region     = "us-east-1"
 }
 
