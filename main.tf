@@ -2,14 +2,6 @@ provider "aws" {
   region     = "us-east-1"
 }
 
-data "aws_secretsmanager_secret" "aws-keys" {
- name = "aws-keys"
-}
-
-data "aws_secretsmanager_secret_version" "secret_credentials" {
- secret_id = data.aws_secretsmanager_secret.aws-keys.id
-}
-
 resource "aws_instance" "k8-M" {
   ami           = "ami-04b70fa74e45c3917"
   instance_type = "t2.medium"  
