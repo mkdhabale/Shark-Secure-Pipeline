@@ -1,4 +1,6 @@
-
+provider "aws" { 
+  region     = "us-east-1"
+}
 
 data "aws_secretsmanager_secret" "aws-keys" {
  name = "aws-keys"
@@ -6,11 +8,6 @@ data "aws_secretsmanager_secret" "aws-keys" {
 
 data "aws_secretsmanager_secret_version" "secret_credentials" {
  secret_id = data.aws_secretsmanager_secret.aws-keys.id
-}
-provider "aws" { 
-  access_key = jsondecode(data.aws_secretsmanager_secret_version.secret_credentials.secret_string)["access_key"]
-  secret_key = jsondecode(data.aws_secretsmanager_secret_version.secret_credentials.secret_string)["secret_key"]
-  region     = "us-east-1"
 }
 
 resource "aws_instance" "k8-M" {
